@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Model Summaries</title>
+        <script>
+        async function fetchNeuralNetworkSummary() {
+            const response = await fetch("/neural_network");
+            const data = await response.json();
+            document.getElementById("neural-summary").innerHTML = data.summary.join("<br>");
+        }
+
+        async function fetchPCASummary() {
+            const response = await fetch("/pca");
+            const data = await response.json();
+            document.getElementById("pca-summary").innerHTML = `
+                <h3>Explained Variance Ratios:</h3>
+                <p>${data.explained_variance.join(", ")}</p>
+                <h3>Principal Components:</h3>
+                <p>${data.components.map(comp => comp.join(", ")).join("<br>")}</p>
+            `;
+        }
+
+        window.onload = () => {
+            fetchNeuralNetworkSummary();
+            fetchPCASummary();
+        }
+    </script>
+    </head>
+    <body>
+        <h1>Model Summaries</h1>
+
+        <div>
+            <h2>Neural Network Summary</h2>
+            <pre id="neural-summary">Loading...</pre>
+        </div>
+
+        <div>
+            <h2>PCA Summary</h2>
+            <div id="pca-summary">Loading...</div>
+        </div>
+    </body>
+</html>
