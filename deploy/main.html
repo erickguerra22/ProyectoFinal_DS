@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <h1>Neural Network Prediction</h1>
-        <form id="prediction-form">
+        <form id="prediction-form" class="row g-3 needs-validation" novalidate>
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Age</label>
-                    <input type="number" id="Age" placeholder="Age" min="0" max="100" class="form-control" required>
+                    <input type="number" id="Age" placeholder="Age" min="18" max="100" class="form-control" required>
+                    <div class="invalid-feedback">Incluir la edad del empleado</div>
                 </div>            
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">BusinessTravel</label> 
@@ -23,10 +24,12 @@
                         <option value="Travel_Frequently">Travel Frequently</option>
                         <option value="Non-Travel">Non-Travel</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar la frecuencia de viaje del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Daily Rate</label>
                     <input type="number" class="form-control" id="DailyRate" placeholder="Daily Rate" min="0" max="1000" required>
+                    <div class="invalid-feedback">Incluir la tarifa diaria del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Department</label>
@@ -35,13 +38,15 @@
                         <option value="Human Resources">Human Resources</option>
                         <option value="Research & Development">Research & Development</option>
                         <option value="Sales">Sales</option>
-                    </select
+                    </select>
+                    <div class="invalid-feedback">Seleccionar el departamento al que pertenece el empleado</div>
                 </div>
             </div>    
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Distance From Home</label>
                     <input type="number" class="form-control" id="DistanceFromHome" placeholder="Distance From Home" min="0" max="1000" required>
+                    <div class="invalid-feedback">Incluir la distancia desde casa</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Education</label>
@@ -53,6 +58,7 @@
                         <option value="4">4. Master</option>
                         <option value="5">5. Doctor</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar Nivel de Educación del Empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Education Field</label>
@@ -65,6 +71,7 @@
                         <option value="Other">Other</option>
                         <option value="Technical Degree">Technical Degree</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar Campo de Educación</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Environment Satisfaction</label>
@@ -75,6 +82,7 @@
                         <option value="3">3. High</option>
                         <option value="4">4. Very High</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el nivel de satisfacción en el entorno</div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -85,10 +93,12 @@
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el género del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Hourly Rate</label>
                     <input class="form-control" type="number" id="HourlyRate" placeholder="Hourly Rate" min="0" max="10000" required>
+                    <div class="invalid-feedback">Incluir la tarifa por hora del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Job Involvement</label>
@@ -99,6 +109,7 @@
                         <option value="3">3. High</option>
                         <option value="4">4. Very High</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el nivel de involucramiento</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Job Level</label>
@@ -110,6 +121,7 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el nivel del cargo del empleado</div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -127,6 +139,7 @@
                         <option value="Sales Executive">Sales Executive</option>
                         <option value="Sales Representative">Sales Representative</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el rol del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Job Satisfaction</label>
@@ -137,6 +150,7 @@
                         <option value="3">3. High</option>
                         <option value="4">4. Very High</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar la satisfacción laboral</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Marital Status</label>
@@ -146,20 +160,24 @@
                         <option value="Married">Married</option>
                         <option value="Single">Single</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el estado civil</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Monthly Income</label>
                     <input class="form-control" type="number" id="MonthlyIncome" placeholder="Monthly Income" min="0" max="100000000" required>
                 </div>
+                <div class="invalid-feedback">Incluir el ingreso mensual del empleado</div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Monthly Rate</label>
                     <input class="form-control" type="number" id="MonthlyRate" placeholder="Monthly Rate" min="0" max="100000000" required>
+                    <div class="invalid-feedback">Incluir la tarifa mensual del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Num Companies Worked</label>
                     <input class="form-control" type="number" id="NumCompaniesWorked" placeholder="Num Companies Worked" min="0" max="100" required>
+                    <div class="invalid-feedback">Incluir la cantidad de empresas donde ha trabajado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Over Time</label>
@@ -168,10 +186,12 @@
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar si ha trabajado tiempo extra</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Percent Salary Hike</label>
                     <input class="form-control" type="number" id="PercentSalaryHike" placeholder="Percent Salary Hike" min="0" max="1000" required>
+                    <div class="invalid-feedback">Incluir el porcentaje del aumento salarial del empleado</div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -184,6 +204,7 @@
                         <option value="3">3. Excellent</option>
                         <option value="4">4. Outstading</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el Performance Rating</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Relationship Satisfaction</label>
@@ -194,6 +215,7 @@
                         <option value="3">3. High</option>
                         <option value="4">4. Very High</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar la satisfacción en la relaciones laborales</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Stock Option Level</label>
@@ -205,16 +227,19 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar nivel de opciones sobre acciones</div>
                 </div>
                 <div class="col-md-3">
                     <label for="TotalWorkingYears" class="form-label">Total Working Years</label>
                     <input type="number" id="TotalWorkingYears" placeholder="Total Working Years" min="0" max="50" class="form-control" required>
                 </div>  
+                <div class="invalid-feedback">Incluir los años totales que ha trabajado el empleado</div>
             </div>
             <div class="row mb-3">         
                 <div class="col-md-3">
                     <label for="TrainingTimesLastYear" class="form-label">Training Times Last Year</label>
                     <input type="number" id="TrainingTimesLastYear" placeholder="Training Times Last Year" min="0" max="10" class="form-control" required>
+                    <div class="invalid-feedback">Incluir la cantidad de capacitaciones recibidas el año anterior</div>
                 </div>
                 <div class="col-md-3">
                     <label for="WorkLifeBalance" class="form-label">Work Life Balance</label>
@@ -225,34 +250,62 @@
                         <option value="3">3. Better</option>
                         <option value="4">4. Best</option>
                     </select>
+                    <div class="invalid-feedback">Seleccionar el nivel de balance de trabajo y vida</div>
                 </div>
                 <div class="col-md-3">
                     <label for="YearsAtCompany" class="form-label">Years At Company</label>
-                    <input type="number" id="YearsAtCompany" placeholder="Years At Company" min="0" max="50" class="form-control" required>
+                    <input type="number" id="YearsAtCompany" placeholder="Years At Company" min="0" max="80" class="form-control" required>
+                    <div class="invalid-feedback">Incluir los años totales que ha trabajado en la empresa el empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="YearsInCurrentRole" class="form-label">Years In Current Role</label>
                     <input type="number" id="YearsInCurrentRole" placeholder="Years In Current Role" min="0" max="50" class="form-control" required>
+                    <div class="invalid-feedback">Incluir los años totales en el puesto actual</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="YearsSinceLastPromotion" class="form-label">Years Since Last Promotion</label>
                     <input type="number" id="YearsSinceLastPromotion" placeholder="Years Since Last Promotion" min="0" max="50" class="form-control" required>
+                    <div class="invalid-feedback">Incluir los años desde la última promoción del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="YearsWithCurrManager" class="form-label">Years With Current Manager</label>
                     <input type="number" id="YearsWithCurrManager" placeholder="Years With Current Manager" min="0" max="50" class="form-control" required>
+                    <div class="invalid-feedback">Incluir los años con el jefe/encargado actual del empleado</div>
                 </div>
             </div>
-            <button type="button" onclick="makePrediction()" class="btn btn-primary mb-3">Predict</button>
+            <button type="submit" class="btn btn-primary mb-3">Predict</button>
         </form>
     </div>
     <div class="container">
+        <label class="form-label"><h2>Resultado de predicción de deserción del empleado</h2></label>
         <p id="result"></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>        
+    <script>
+        // Validación personalizada con Bootstrap
+        (() => {
+          'use strict'
+        
+          // Selecciona el formulario para aplicar la validación
+          const form = document.querySelector('#prediction-form')
+        
+          form.addEventListener('submit', event => {
+            // Prevenir el envío si hay campos no válidos
+            if (!form.checkValidity()) {
+              event.preventDefault()  // Evita que el formulario se envíe
+              event.stopPropagation() // Evita la propagación del evento
+            } else {
+              // Si el formulario es válido, ejecuta makePrediction y evita el envío normal del formulario
+              event.preventDefault()  // Evita el envío normal para ejecutar la función personalizada
+              makePrediction()        // Llama a la función makePrediction solo si el formulario es válido
+            }
+        
+            form.classList.add('was-validated')
+          }, false)
+        })()
+    
         async function makePrediction() {
             const numericalInputs = {
                 Age: parseFloat(document.getElementById('Age').value),
@@ -270,7 +323,7 @@
                 YearsSinceLastPromotion: parseFloat(document.getElementById('YearsSinceLastPromotion').value),
                 YearsWithCurrManager: parseFloat(document.getElementById('YearsWithCurrManager').value)
             };
-
+        
             const categoricalInputs = {
                 BusinessTravel: document.getElementById('BusinessTravel').value,
                 Department: document.getElementById('Department').value,
@@ -289,29 +342,30 @@
                 StockOptionLevel: parseInt(document.getElementById('StockOptionLevel').value),
                 WorkLifeBalance: parseInt(document.getElementById('WorkLifeBalance').value)
             };
-
+        
             const data = {
                 numerical: numericalInputs,
                 categorical: categoricalInputs
             };
-
+        
+            // Agrega un mensaje de consola para verificar los datos que se están enviando
+            // console.log('Datos enviados:', JSON.stringify(data, null, 2));
+        
             try {
                 const response = await fetch('http://127.0.0.1:5000/predict', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
-
+        
+                const result = await response.json();
                 const resultText = result.prediction === 1 ? 'Yes' : 'No';
                 document.getElementById('result').textContent = `Prediction: ${resultText}`;
-
             } catch (error) {
-                // Log the error to the console for debugging purposes
                 console.error('Error making prediction:', error);
-                // Display a user-friendly error message on the page
                 document.getElementById('result').textContent = 'Error making prediction';
             }
-        }
+        }        
     </script>
 </body>
 </html>

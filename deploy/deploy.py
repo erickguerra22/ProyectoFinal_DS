@@ -11,6 +11,7 @@ CORS(app)  # Esto permite todas las solicitudes de cualquier origen
 # Cargar los modelos PCA y red neuronal
 pca_model = joblib.load('models\\pca_model.pkl')
 nn_model = load_model('models\\NNmodel.h5')
+scaler = joblib.load('models\\scalerred.pkl')
 
 # Columnas numericas 
 numeric_columns = [
@@ -68,6 +69,9 @@ def predict():
     # Datos de entrada en formato JSON
     data = request.json  
     
+    # Agrega un mensaje para depurar los datos recibidos
+    # print("Datos recibidos:", data)
+    
     # Separar datos numéricos y categóricos
     num_data = pd.DataFrame([data['numerical']], columns=numeric_columns)
     cat_data = pd.DataFrame([data['categorical']], columns=categorical_columns)
@@ -75,7 +79,8 @@ def predict():
     # Aplicar transformación PCA a datos numéricos y obtener solo las primeras dos componentes
     num_data = StandardScaler().fit_transform(num_data) 
     num_data_pca = pca_model.transform(num_data)[:, :2]
-    # Obtener las variables numericas 
+    num_data_pca = pd.DataFrame(num_data_pca, columns=['PC1', 'PC2'])
+    # Obtener las variables cualitativas 
     cat_data_dummies = pd.DataFrame(False, index=cat_data.index, columns=expected_columns)
 
     # Asegurarse de que todas las columnas esperadas están presentes en el DataFrame de entrada, igualando la estructura con la que se entrenó el modelo
@@ -92,7 +97,8 @@ def predict():
     full_data = pd.concat([pd.DataFrame(num_data_pca), cat_data_dummies], axis=1)
     
     # Aplicar una segunda escalizacion a los datos
-    full_data = StandardScaler().transform(full_data)
+    full_data.columns = full_data.columns.astype(str)
+    full_data = scaler.transform(full_data)
     
     # Realizar predicción
     prediction_prob = nn_model.predict(full_data)  # Esto devuelve una probabilidad
