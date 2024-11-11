@@ -5,10 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Neural Network Prediction</title>
+    <script>
+        async function fetchNeuralNetworkSummary() {
+            const response = await fetch("http://127.0.0.1:5000/neural_network");
+            const data = await response.json();
+            document.getElementById("neural-summary").innerHTML = data.summary.join("<br>");
+        }
+
+        async function fetchPCASummary() {
+            const response = await fetch("http://127.0.0.1:5000/pca");
+            const data = await response.json();
+            
+            // Mostrar la varianza explicada y la tabla de componentes
+            document.getElementById("pca-summary").innerHTML = `
+                <h3>Explained Variance Ratios:</h3>
+                <p>${data.explained_variance.join(", ")}</p>
+                <h3>Principal Components:</h3>
+                ${data.components_table}  <!-- Inserta la tabla generada en el servidor -->
+            `;
+        }
+
+        window.onload = () => {
+            fetchNeuralNetworkSummary();
+            fetchPCASummary();
+        }
+    </script>
 </head>
 <body>
     <div class="container">
+        <hr class="my-4"> <!-- Agrega un espacio vertical alrededor de la línea -->
         <h1>Neural Network Prediction</h1>
+        <hr class="my-4"> <!-- Agrega un espacio vertical alrededor de la línea -->
         <form id="prediction-form" class="row g-3 needs-validation" novalidate>
             <div class="row mb-3">
                 <div class="col-md-3">
@@ -28,7 +55,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Daily Rate</label>
-                    <input type="number" class="form-control" id="DailyRate" placeholder="Daily Rate" min="0" max="1000" required>
+                    <input type="number" class="form-control" id="DailyRate" placeholder="Daily Rate" min="1" max="1000" required>
                     <div class="invalid-feedback">Incluir la tarifa diaria del empleado</div>
                 </div>
                 <div class="col-md-3">
@@ -97,7 +124,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Hourly Rate</label>
-                    <input class="form-control" type="number" id="HourlyRate" placeholder="Hourly Rate" min="0" max="10000" required>
+                    <input class="form-control" type="number" id="HourlyRate" placeholder="Hourly Rate" min="1" max="10000" required>
                     <div class="invalid-feedback">Incluir la tarifa por hora del empleado</div>
                 </div>
                 <div class="col-md-3">
@@ -164,19 +191,19 @@
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Monthly Income</label>
-                    <input class="form-control" type="number" id="MonthlyIncome" placeholder="Monthly Income" min="0" max="100000000" required>
+                    <input class="form-control" type="number" id="MonthlyIncome" placeholder="Monthly Income" min="1" max="100000000" required>
                 </div>
                 <div class="invalid-feedback">Incluir el ingreso mensual del empleado</div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Monthly Rate</label>
-                    <input class="form-control" type="number" id="MonthlyRate" placeholder="Monthly Rate" min="0" max="100000000" required>
+                    <input class="form-control" type="number" id="MonthlyRate" placeholder="Monthly Rate" min="1" max="100000000" required>
                     <div class="invalid-feedback">Incluir la tarifa mensual del empleado</div>
                 </div>
                 <div class="col-md-3">
                     <label for="exampleFormControlInput1" class="form-label">Num Companies Worked</label>
-                    <input class="form-control" type="number" id="NumCompaniesWorked" placeholder="Num Companies Worked" min="0" max="100" required>
+                    <input class="form-control" type="number" id="NumCompaniesWorked" placeholder="Num Companies Worked" min="1" max="100" required>
                     <div class="invalid-feedback">Incluir la cantidad de empresas donde ha trabajado</div>
                 </div>
                 <div class="col-md-3">
@@ -278,10 +305,34 @@
             <button type="submit" class="btn btn-primary mb-3">Predict</button>
         </form>
     </div>
+    <hr class="my-4"> <!-- Agrega un espacio vertical alrededor de la línea -->
     <div class="container">
         <h2>Resultado de predicción de deserción del empleado</h2>
         <h3 id="result" aria-live="polite"></h3>
     </div>
+    <hr class="my-4"> <!-- Agrega un espacio vertical alrededor de la línea -->
+    <div class="container">
+        <h1>Model Summaries</h1>
+        <p>
+            <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              Model Summaries
+            </button>
+        </p>
+        <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <div class="card card-body">
+                    <h2>Neural Network Summary</h2>
+                    <pre id="neural-summary">Loading...</pre>
+                    <hr class="my-4"> <!-- Agrega un espacio vertical alrededor de la línea -->
+                    <h2>PCA Summary</h2>
+                    <div style="overflow-x: auto;">
+                        <div id="pca-summary">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // Validación personalizada con Bootstrap

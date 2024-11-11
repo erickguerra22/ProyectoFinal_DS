@@ -49,6 +49,37 @@ expected_columns = [
     "WorkLifeBalance_1", "WorkLifeBalance_2", "WorkLifeBalance_3", "WorkLifeBalance_4"
 ]
 
+# Ruta para el resumen del modelo de red neuronal
+@app.route('/neural_network')
+def neural_network_summary():
+    # Genera el resumen del modelo de red neuronal
+    summary_list = []
+    nn_model.summary(print_fn=lambda x: summary_list.append(x))
+    return jsonify({'summary': summary_list})
+
+# Ruta para el resumen del modelo PCA
+@app.route('/pca')
+def pca_summary():
+    # Obtén la varianza explicada y los componentes principales
+    explained_variance = pca_model.explained_variance_ratio_.tolist()
+    components = pca_model.components_
+    
+    # Convertir los componentes a un DataFrame para una visualización más organizada
+    components_df = pd.DataFrame(
+        components,
+        index=[f"PC{i+1}" for i in range(components.shape[0])],
+        columns=numeric_columns
+    )
+
+    # Convertir el DataFrame a HTML
+    components_html = components_df.to_html(classes="table table-striped", border=0)
+    
+    return jsonify({
+        'explained_variance': explained_variance,
+        'components_table': components_html
+    })
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     """ Realiza una predicción basada en datos de entrada en formato JSON.
